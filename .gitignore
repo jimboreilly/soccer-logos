@@ -1,0 +1,6 @@
+# Visual Studio artifacts
+.vs/
+packages/
+
+# Build artifacts
+Debug/
