@@ -27,7 +27,7 @@ namespace SoccerLogos.Types {
       return (this.id == comp.id)
         && (this.caption == comp.caption)
         && (this.league == comp.league)
-        && (this.year == this.year)
+        && (this.year == comp.year)
         && (this.numberOfTeams == comp.numberOfTeams)
         && (this.numberOfGames == comp.numberOfGames);
     }

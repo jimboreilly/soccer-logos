@@ -4,3 +4,6 @@ packages/
 
 # Build artifacts
 Debug/
+
+# configuration file
+config.json

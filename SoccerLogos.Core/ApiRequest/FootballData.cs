@@ -9,8 +9,10 @@ using SoccerLogos.Types;
 namespace SoccerLogos.Core.ApiRequest {
   public class FootballData {
 
+    private readonly static MakeApiRequest api = new MakeApiRequest();
+
     private T makeRequestAndDeserializeResults<T>(string requestUrl) {
-      var task = MakeApiRequest.GetHttpRequestResponseAsync(requestUrl);
+      var task = api.GetHttpRequestResponseAsync(requestUrl);
       return JsonConvert.DeserializeObject<T>(task.Result);
     }
 

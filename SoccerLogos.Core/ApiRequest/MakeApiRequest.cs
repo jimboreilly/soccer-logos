@@ -5,21 +5,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SoccerLogos.Core {
-  public static class MakeApiRequest {
+  public class MakeApiRequest {
 
-    private static readonly string baseurl = "http://api.football-data.org/v1/";
+    private readonly string apiKey;
+    private readonly string configFileName = "config.json";
 
-    public async static Task<string> GetHttpRequestResponseAsync(string url) {
-      var request = WebRequest.Create(baseurl + url);
-      var httpResponse = await request.GetResponseAsync();
+    public MakeApiRequest() {
+      var configLocation = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\"));
+      var configPath = configLocation + configFileName;
+      if (File.Exists(configPath)) {
+        JObject config = JObject.Parse(File.ReadAllText(configPath));
+        this.apiKey = config.Property("key").Value.ToString();
+      }
+      else this.apiKey = null;
+    }
+
+    private readonly string baseurl = "http://api.football-data.org/v1/";
+
+    public async Task<string> GetHttpRequestResponseAsync(string url) {
+      var httpRequest = (HttpWebRequest)WebRequest.Create(baseurl + url);
+
+      //limited to 50 requests/day without authentication
+      if (this.apiKey != null) {
+        httpRequest.PreAuthenticate = true;
+        httpRequest.Headers.Add("X-Auth-Token", apiKey);
+      }
+      var httpResponse = await httpRequest.GetResponseAsync();
       var response = parseWebResponseToString(httpResponse);
       httpResponse.Close();
       return response;
     }
 
-    private static string parseWebResponseToString(WebResponse httpResponse) {
+    private string parseWebResponseToString(WebResponse httpResponse) {
       var dataStream = httpResponse.GetResponseStream();
       var reader = new StreamReader(dataStream);
       var response = reader.ReadToEnd();
