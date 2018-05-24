@@ -11,6 +11,8 @@ namespace SoccerLogos.Core.ApiRequest {
 
     private readonly static MakeApiRequest api = new MakeApiRequest();
 
+    public FootballData() { }
+
     private T makeRequestAndDeserializeResults<T>(string requestUrl) {
       var task = api.GetHttpRequestResponseAsync(requestUrl);
       return JsonConvert.DeserializeObject<T>(task.Result);

@@ -13,8 +13,10 @@ namespace SoccerLogos.Core {
 
     private readonly string apiKey;
     private readonly string configFileName = "config.json";
+    private readonly string baseurl = "http://api.football-data.org/v1/";
 
     public MakeApiRequest() {
+      //try to load the api key from the config file else requests are limited
       var configLocation = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\"));
       var configPath = configLocation + configFileName;
       if (File.Exists(configPath)) {
@@ -23,8 +25,6 @@ namespace SoccerLogos.Core {
       }
       else this.apiKey = null;
     }
-
-    private readonly string baseurl = "http://api.football-data.org/v1/";
 
     public async Task<string> GetHttpRequestResponseAsync(string url) {
       var httpRequest = (HttpWebRequest)WebRequest.Create(baseurl + url);
@@ -49,7 +49,6 @@ namespace SoccerLogos.Core {
 
       return response;
     }
-
 
   }
 }
