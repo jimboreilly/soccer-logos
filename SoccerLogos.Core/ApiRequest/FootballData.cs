@@ -23,13 +23,24 @@ namespace SoccerLogos.Core.ApiRequest {
       return makeRequestAndDeserializeResults<IEnumerable<Competition>>(competitionsUrl);
     }
 
-    public League GetLeaugeByCompetitionId(int id) {
+    public Competition GetCompetitionById(int id) {
+      var competitionUrl = "/competitions/" + id.ToString();
+      return makeRequestAndDeserializeResults<Competition>(competitionUrl);
+    }
+
+    public League GetLeaugeByCompetitionId(int id, string leagueName) {
       var clubsUrl = "/competitions/" + id.ToString() + "/teams";
-      return makeRequestAndDeserializeResults<League>(clubsUrl);
+      var league = makeRequestAndDeserializeResults<League>(clubsUrl);
+      league.teams.ForEach(club => club.league = leagueName);
+      return league;
     }
 
     public IEnumerable<Club> GetAllClubsInListOfCompetitions(IEnumerable<Competition> competitions) {
-      return competitions.SelectMany(comp => GetLeaugeByCompetitionId(comp.id).teams);
+      return competitions.SelectMany(comp => GetLeaugeByCompetitionId(comp.id, removeYearFromCaption(comp.caption)).teams);
+    }
+
+    private string removeYearFromCaption(string caption) {
+      return caption.Substring(0, caption.LastIndexOf(' '));
     }
 
   }

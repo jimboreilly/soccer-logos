@@ -20,7 +20,7 @@ namespace SoccerLogos.Core.ApiRequest {
     public void init() {
       fbData = new FootballData();
       competitions = fbData.GetCompetitionsList();
-      prem = fbData.GetLeaugeByCompetitionId(premierLeague2017Id);
+      prem = fbData.GetLeaugeByCompetitionId(premierLeague2017Id, "Premier League");
     }
 
     [SetUp]

@@ -29,6 +29,7 @@ namespace SoccerLogos.Core {
     public async Task<string> GetHttpRequestResponseAsync(string url) {
       var httpRequest = (HttpWebRequest)WebRequest.Create(baseurl + url);
 
+      //await Task.Delay(10);
       //limited to 50 requests/day without authentication
       if (this.apiKey != null) {
         httpRequest.PreAuthenticate = true;

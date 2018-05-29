@@ -1,0 +1,52 @@
+﻿@page
+@model SoccerLogosWeb.Pages.IndexModel
+@{
+    ViewData["Title"] = "Soccer Logos";
+}
+
+<h2>Display</h2>
+
+<form>
+    <p>
+        <select asp-for="SelectedLeague" asp-items="Model.Leagues">
+            <option value="">All</option>
+        </select>
+        Club: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.Clubs.ElementAt(0).name)</th>
+            <th> @Html.DisplayNameFor(model => model.Clubs.ElementAt(0).league)</th>
+            <th> @Html.DisplayNameFor(model => model.Clubs.ElementAt(0).crestUrl)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model.Clubs) {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => club.name) </td>
+                <td> @Html.DisplayFor(modelItem => club.league) </td>
+                @if (String.IsNullOrEmpty(club.crestUrl)) {
+                    <td>
+                        <svg width="100" height="100">
+                            <image width="100" height="100" xlink:href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Soccer_ball.svg/600px-Soccer_ball.svg.png" />
+                        </svg>
+                    </td>
+
+                }
+                else {
+                    <td>
+                        <svg width="100" height="100">
+                            <image width="100" height="100" xlink:href=@club.crestUrl />
+                        </svg>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
