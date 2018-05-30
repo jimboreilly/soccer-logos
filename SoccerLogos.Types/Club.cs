@@ -17,6 +17,14 @@ namespace SoccerLogos.Types {
     [Display(Name = "League")]
     public string league { get; set; }
 
+
+    /// <summary>
+    /// Type to represent a soccer club in any league
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="code"></param>
+    /// <param name="shortName"></param>
+    /// <param name="crestUrl"></param>
     public Club(string name, string code, string shortName, string crestUrl) {
       this.name = name;
       this.code = code;
@@ -29,7 +37,8 @@ namespace SoccerLogos.Types {
       return (this.name == club.name)
         && (this.code == club.code)
         && (this.shortName == club.shortName)
-        && (this.crestUrl == club.crestUrl);
+        && (this.crestUrl == club.crestUrl)
+        && (this.league == club.league);
     }
   }
 }

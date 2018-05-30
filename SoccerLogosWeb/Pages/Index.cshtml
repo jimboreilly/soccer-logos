@@ -4,14 +4,13 @@
     ViewData["Title"] = "Soccer Logos";
 }
 
-<h2>Display</h2>
-
 <form>
-    <p>
+    <p style="padding-top: 25px">
+        League:
         <select asp-for="SelectedLeague" asp-items="Model.Leagues">
             <option value="">All</option>
         </select>
-        Club: <input type="text" name="SearchString">
+        Club: <input type="text" name="SearchString" placeholder="Search...">
         <input type="submit" value="Filter" />
     </p>
 </form>

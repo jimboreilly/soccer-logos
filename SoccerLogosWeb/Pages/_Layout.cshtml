@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SoccerLogosWeb</title>
+    <title>@ViewData["Title"]</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -24,15 +24,13 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">SoccerLogosWeb</a>
+                <a asp-page="/Index" class="navbar-brand">Soccer Logos</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - SoccerLogosWeb</p>
+            <p>&copy; 2018 - <a href="https://github.com/JamesMReilly/soccor-logos">JamesMReilly</a></p>
         </footer>
     </div>
 

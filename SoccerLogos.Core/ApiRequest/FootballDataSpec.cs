@@ -25,7 +25,7 @@ namespace SoccerLogos.Core.ApiRequest {
 
     [SetUp]
     public void testInit() {
-      System.Threading.Thread.Sleep(10); //wait 1ms to slow down request speed
+      System.Threading.Thread.Sleep(10); //wait 10ms to slow down request speed inbetween tests
     }
 
     [Test]

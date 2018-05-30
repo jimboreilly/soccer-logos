@@ -13,6 +13,15 @@ namespace SoccerLogos.Types {
     public int numberOfTeams;
     public int numberOfGames;
 
+    /// <summary>
+    /// Type to represent a competition of football
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="caption"></param>
+    /// <param name="league"></param>
+    /// <param name="year"></param>
+    /// <param name="numberOfTeams"></param>
+    /// <param name="numberOfGames"></param>
     public Competition(int id, string caption, string league, int year, int numberOfTeams, int numberOfGames) {
       this.id = id;
       this.caption = caption;

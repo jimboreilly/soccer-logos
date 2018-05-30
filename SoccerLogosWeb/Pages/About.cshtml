@@ -3,7 +3,37 @@
 @{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
+<h2>About the Application</h2>
+<h3>Purpose</h3>
+<p>The purpose of this application is to grab data from a public web API and display this data in a responsive web application allowing users to quickly filter through the results. The data selected was English League Football teams available from <a href="https://www.football-data.org/documentation">football-data.org</a></p>
 
-<p>Use this area to provide additional information.</p>
+<h3>Repository</h3>
+<p>The repository is open and available freely under my Github <a href="https://github.com/JamesMReilly/soccor-logos">JamesMReilly</a></p>
+
+<h3>References</h3>
+<p>I found that Microsoft's official documentation on <a href"https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-2.0">Creating Razor Page web apps in ASP.NET Core</a> and <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-2.0&tabs=aspnetcore2x">Session and app state in ASP.NET Core</a> were the most useful in completing this exercise</p>
+
+<h3>Implementation Details</h3>
+<ul>
+    <li>This app was developed entirely in Visual Studio</li>
+    <li>Connects to <a href="https://www.football-data.org/documentation">football-data.org</a> public API for football(soccer!) data</li>
+    <li>The API requests are made in C# and deserialized into custom C# objects with NewtonSoftJSON</li>
+    <li>The unit tests were written using NUnit 3 test framework</li>
+    <li>The web page was built with ASP.NET Core using Microsoft's Razor Pages</li>
+    <li>Browser caching implemented to save query results for performance</li>
+</ul>
+
+<h3>Project Structure</h3>
+<p>The application was implemented in 4 C# projects: Types, Core, Main, and Web</p>
+
+<h4>SoccerLogos.Types</h4>
+<p>The Types project defines custom data types to deserialize JSON query results into</p>
+
+<h4>SoccerLogos.Core</h4>
+<p>Core contains all code for making the specific HTTP requests and wrap the results into their respective types</p>
+
+<h4>SoccerLogos.Main</h4>
+<p>The Main project has static implementations of the highest level methods to be called by the web project limiting the neccesary references to the API code</p>
+
+<h4>SoccerLogosWeb</h4>
+<p>The ASP.NET Core web application. This project is the startup project and implements all front-end interaction with Razor Pages combining HTML and C#</p>
